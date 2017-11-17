@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        movement_speed = 5.0f;
+        movement_speed = 3.0f;
     }
 
     // Update is called once per frame
@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Ended)
+            if (touch.phase == TouchPhase.Moved)
             {
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
@@ -37,9 +37,9 @@ public class PlayerController : MonoBehaviour
     public void GoToLocation(Vector3 location)
     {
 
-            transform.position = Vector3.Lerp(transform.position, location, movement_speed * Time.deltaTime);
-            Debug.Log("Destination : " + location);
-    
+        transform.position = Vector3.Lerp(transform.position, location, movement_speed * Time.deltaTime);
+        Debug.Log("Destination : " + location);
+
     }
 
     private void GoToMouse()
@@ -51,7 +51,8 @@ public class PlayerController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                Vector3 destination = hit.point;
+                Vector3 destination = new Vector3(hit.point.x, hit.point.y + 1, hit.point.z);
+
                 transform.position = Vector3.Lerp(transform.position, destination, movement_speed * Time.deltaTime);
                 Debug.Log("Destination : " + destination);
             }

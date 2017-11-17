@@ -4,14 +4,14 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 12
-  productGUID: a30a88c73524a744ba6dc1c81b674618
+  productGUID: 0890128d1d6137449a9573d0ffa05e53
   AndroidProfiler: 0
-  defaultScreenOrientation: 3
+  defaultScreenOrientation: 4
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: dude
-  productName: dude's game
+  companyName: DefaultCompany
+  productName: VideoGameDesign
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -140,8 +140,7 @@ PlayerSettings:
   useHDRDisplay: 0
   targetPixelDensity: 0
   resolutionScalingMode: 0
-  applicationIdentifier:
-    Android: com.dude.ProductName
+  applicationIdentifier: {}
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
@@ -587,12 +586,11 @@ PlayerSettings:
     daydream:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
-  cloudServicesEnabled:
-    UNet: 1
+  cloudServicesEnabled: {}
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: ade2c29b-f7be-44ab-8262-4f2e77757949
-  projectName: VideoGameDesign
+  cloudProjectId: b47f3861-7820-407a-8e17-e063a6ee50eb
+  projectName: VideoGameDesign (1)
   organizationId: diogogomes646
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
