@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
 
     public float movement_speed;
+    public GameObject UIManager;
 
     // Use this for initialization
     void Start()
@@ -16,22 +17,25 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.touchCount > 0)
+        if (!UIManager.GetComponent<UIManager>().isPaused)
         {
-            Touch touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Moved)
+            if (Input.touchCount > 0)
             {
-                RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+                Touch touch = Input.GetTouch(0);
+                if (touch.phase == TouchPhase.Moved)
+                {
+                    RaycastHit hit;
+                    Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
 
-                if (Physics.Raycast(ray, out hit))
-                    if (hit.collider != null)
-                    {
-                        GoToLocation(new Vector3 (hit.point.x, transform.position.y,hit.point.z));
-                    }
+                    if (Physics.Raycast(ray, out hit))
+                        if (hit.collider != null)
+                        {
+                            GoToLocation(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+                        }
+                }
             }
+            GoToMouse();
         }
-        GoToMouse();
     }
 
     public void GoToLocation(Vector3 location)
