@@ -28,4 +28,17 @@ public class EnemyManager : MonoBehaviour {
         return (int )Random.Range(1, 4);
     }
 
+
+    private void OnCollisionStay(Collision collision)
+    {
+  
+        Debug.Log("poop");
+    }
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    Debug.Log("poop");
+    //}
+
+
 }

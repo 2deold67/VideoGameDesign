@@ -10,7 +10,6 @@ public class combatManager : MonoBehaviour {
     public GameObject UIManager;
     public companionManager[] companionList;
     public companionManager defaultCompanion;
-    public Button Attack;
     public Slider enemyhealth;
     public Slider playerhealth;
     int enemyAttckChoice;

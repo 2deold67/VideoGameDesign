@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
     {
 
         transform.position = Vector3.Lerp(transform.position, location, playerSpeed * Time.deltaTime);
-        Debug.Log("Destination : " + location);
+        //Debug.Log("Destination : " + location);
 
     }
 
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
                 Vector3 destination = new Vector3(hit.point.x, hit.point.y + 1, hit.point.z);
 
                 transform.position = Vector3.Lerp(transform.position, destination, playerSpeed * Time.deltaTime);
-                Debug.Log("Destination : " + destination);
+                //Debug.Log("Destination : " + destination);
             }
         }
     }
