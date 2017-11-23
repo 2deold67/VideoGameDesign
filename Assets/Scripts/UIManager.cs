@@ -53,6 +53,7 @@ public class UIManager : MonoBehaviour {
     public void Sword()
     {
         player.GetComponent<PlayerController>().lastAttack = 3;
+        
         //Debug.Log(player.GetComponent<PlayerController>().lastAttack);
     }
 }
