@@ -10,9 +10,9 @@ public class PlayerController : MonoBehaviour
 
     public float playerSpeed;
     public GameObject UIManager;
-    public float playerHealth;
-    public float playerDmg;
-    public float dmgMulti; //damage multiplier
+    public int playerHealth;
+    public int playerDmg;
+    public int dmgMulti; //damage multiplier
     public companionManager[] companionList;
     public companionManager defaultCompanion;
     public int lastAttack;
@@ -24,8 +24,8 @@ public class PlayerController : MonoBehaviour
         companionList = new companionManager[4];
         companionList[0] = defaultCompanion;
         playerSpeed = 3.0f;
-        playerHealth = 50.0f;
-        playerDmg = 5.0f;
+        //playerHealth = 5;
+        //playerDmg = 5;
     }
 
     // Update is called once per frame
@@ -51,18 +51,19 @@ public class PlayerController : MonoBehaviour
                 }
             }
             //debug
-            GoToMouse();
+           GoToMouse();
         }
+        
 
-        else if(SceneManager.GetActiveScene().name != "fightScene")
-        {
-            bool playerAttacked = false;
-            if (playerAttacked)
-            {
-                Enemy.GetComponent<EnemyManager>().Attack(lastAttack, playerDmg);
-            }
-            
-        }
+        //else if (SceneManager.GetActiveScene().name != "fightScene")
+        //{
+        //    bool playerAttacked = false;
+        //    if (playerAttacked)
+        //    {
+        //        Enemy.GetComponent<EnemyManager>().Attack(lastAttack, playerDmg);
+        //    }
+
+        //}
 
     }
 
@@ -91,8 +92,5 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void takeDamage(float damage)
-    {
-        playerHealth -= damage;
-    }
+  
 }

@@ -43,16 +43,16 @@ public class UIManager : MonoBehaviour {
     public void ShieldBash()
     {
         player.GetComponent<PlayerController>().lastAttack = 1;
-        Debug.Log(player.GetComponent<PlayerController>().lastAttack);
+       //Debug.Log(player.GetComponent<PlayerController>().lastAttack);
     }
     public void Dagger()
     {
         player.GetComponent<PlayerController>().lastAttack = 2;
-        Debug.Log(player.GetComponent<PlayerController>().lastAttack);
+       // Debug.Log(player.GetComponent<PlayerController>().lastAttack);
     }
     public void Sword()
     {
         player.GetComponent<PlayerController>().lastAttack = 3;
-        Debug.Log(player.GetComponent<PlayerController>().lastAttack);
+        //Debug.Log(player.GetComponent<PlayerController>().lastAttack);
     }
 }

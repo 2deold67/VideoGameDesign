@@ -3,43 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour {
-    
-    public float enemyHealth;
+
+    public int enemyHealth;
+    public int enemyDamage;
+    public int enemyAttack;
     public int dmgMulti;
 	// Use this for initialization
 	void Start () {
-        enemyHealth = 50.0f;
-	}
+        //enemyHealth = 50;
+        //enemyDamage = 2;
+
+    }
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
+	
 
-    public void Attack(int playerAttack, float playerDamage)
+    public void EnemyAttack()
     {
-        int currentAttack = RandomAttack();//get random attack for enemy
-        if (currentAttack == playerAttack)//same attack as player
-        {
-            dmgMulti = 1;
-        }
-        else if (currentAttack > playerAttack)//enemy attack stronger
-        {
-            dmgMulti = 2;
-        }
-        else//enemy attack weaker
-        {
-            playerDamage *= 2;
-        }
-        takeDamage(playerDamage);
+        enemyAttack = RandomAttack();//get random attack for enemy
+   
     }
     int  RandomAttack()
     {
-        return (int )Random.Range(1, 3);
+        return (int )Random.Range(1, 4);
     }
 
-    void takeDamage(float damage)
-    {
-        enemyHealth -= damage;
-    }
 }
