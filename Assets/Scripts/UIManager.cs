@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour {
 
@@ -8,12 +10,29 @@ public class UIManager : MonoBehaviour {
     public GameObject pauseMenu;
     public GameObject player;
     public GameObject enemy;
+    public GameObject optionsPanel;
+    public GameObject musicSource;
+    public Slider soundSlider;
+    public Slider musicSlider;
+    bool isMute;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
-        isPaused = false;
-        pauseMenu.SetActive(false);
+        if (SceneManager.GetActiveScene().name != "mainMenu")
+        {
+            isPaused = false;
+            pauseMenu.SetActive(false);
+        }
+        else
+        {
+            musicSource.GetComponent<AudioSource>().Play();
+            musicSource.GetComponent<AudioSource>().volume = 0.5f;
+            AudioListener.volume = 0.5f;
+            musicSlider.value = musicSource.GetComponent<AudioSource>().volume;
+            soundSlider.value = AudioListener.volume;
+            optionsPanel.SetActive(false);
+        }
     }
 	
 	// Update is called once per frame
@@ -55,5 +74,40 @@ public class UIManager : MonoBehaviour {
         player.GetComponent<PlayerController>().lastAttack = 3;
         
         //Debug.Log(player.GetComponent<PlayerController>().lastAttack);
+    }
+
+    public void playGame()
+    {
+        SceneManager.LoadScene("mainScene");
+    }
+
+    public void musicMute()
+    {
+        musicSource.GetComponent<AudioSource>().mute = !musicSource.GetComponent<AudioSource>().mute;
+        //musicSlider.value = musicSource.GetComponent<AudioSource>().volume;
+        Debug.Log("Music Mute");
+    }
+    public void soundMute()
+    {
+       
+       AudioListener.volume = isMute ? 0:1;
+        //soundSlider.value = AudioListener.volume;
+        Debug.Log("Sound Mute");
+    }
+
+    public void SoundSlider()
+    {
+        AudioListener.volume = soundSlider.value;
+        Debug.Log("Sound: " + AudioListener.volume);
+    }
+    public void MusicSlider()
+    {
+        musicSource.GetComponent<AudioSource>().volume = musicSlider.value;
+        Debug.Log("Music: " + musicSource.GetComponent<AudioSource>().volume);
+    }
+
+    public void OptionsPanel()
+    {
+        optionsPanel.SetActive(!optionsPanel.activeSelf);
     }
 }

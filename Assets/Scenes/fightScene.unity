@@ -313,7 +313,6 @@ MonoBehaviour:
   UIManager: {fileID: 557894305}
   companionList: []
   defaultCompanion: {fileID: 0}
-  Attack: {fileID: 0}
   enemyhealth: {fileID: 1527295060}
   playerhealth: {fileID: 1303346752}
 --- !u!4 &150955071
@@ -1949,8 +1948,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -5, y: 0}
-  m_SizeDelta: {x: -20, y: 0}
+  m_AnchoredPosition: {x: -2.5, y: 0}
+  m_SizeDelta: {x: -15, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1748971121
 GameObject:
