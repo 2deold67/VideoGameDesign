@@ -12,8 +12,14 @@ public class UIManager : MonoBehaviour {
     public GameObject enemy;
     public GameObject optionsPanel;
     public GameObject musicSource;
+    public GameObject soundIcon;
+    public GameObject musicIcon;
     public Slider soundSlider;
     public Slider musicSlider;
+    public Sprite soundSprite;
+    public Sprite musicSprite;
+    public Sprite muteSprite;
+    public Sprite noMusicSprite;
     bool isMute;
 
     // Use this for initialization
@@ -32,6 +38,8 @@ public class UIManager : MonoBehaviour {
             musicSlider.value = musicSource.GetComponent<AudioSource>().volume;
             soundSlider.value = AudioListener.volume;
             optionsPanel.SetActive(false);
+            soundIcon.GetComponent<Image>().sprite = soundSprite;
+            musicIcon.GetComponent<Image>().sprite = musicSprite;
         }
     }
 	
@@ -84,6 +92,18 @@ public class UIManager : MonoBehaviour {
     public void musicMute()
     {
         musicSource.GetComponent<AudioSource>().mute = !musicSource.GetComponent<AudioSource>().mute;
+        if (musicIcon.GetComponent<Image>().sprite == musicSprite)
+        {
+            musicIcon.GetComponent<Image>().sprite = noMusicSprite;
+
+        }
+
+        else if (musicIcon.GetComponent<Image>().sprite == noMusicSprite)
+
+        {
+            musicIcon.GetComponent<Image>().sprite = musicSprite;
+
+        }
         //musicSlider.value = musicSource.GetComponent<AudioSource>().volume;
         Debug.Log("Music Mute");
     }
@@ -91,6 +111,19 @@ public class UIManager : MonoBehaviour {
     {
        
        AudioListener.volume = isMute ? 0:1;
+        if (soundIcon.GetComponent<Image>().sprite == soundSprite)
+        {
+            soundIcon.GetComponent<Image>().sprite = muteSprite;
+
+        }
+
+        else if (soundIcon.GetComponent<Image>().sprite == muteSprite)
+
+        {
+            soundIcon.GetComponent<Image>().sprite = soundSprite;
+
+        }
+
         //soundSlider.value = AudioListener.volume;
         Debug.Log("Sound Mute");
     }
