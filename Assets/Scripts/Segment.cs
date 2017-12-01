@@ -29,7 +29,8 @@ public class Segment : MonoBehaviour {
     public Material SegmentMat;
     public Material Green;
     public Material Red;
-    
+    public Inventory R_Inventory;
+    public GameObject Furniture;
 	void Start ()
     {
         
@@ -38,11 +39,24 @@ public class Segment : MonoBehaviour {
 	
 	void Update ()
     {
+        if (R_Inventory == null)
+        {
+            R_Inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
+            print(GameObject.FindGameObjectWithTag("Inventory"));
 
-	}
+        }
+    }
 
     private void OnMouseDown()
     {
-        Taken = !Taken;
+        if (!Taken)
+        {
+            if (R_Inventory.SelectedFurniture != null)
+            {
+                Furniture = R_Inventory.SelectedFurniture;
+                Taken = true;
+                R_Inventory.SelectedFurniture = null;
+            }
+        }
     }
 }

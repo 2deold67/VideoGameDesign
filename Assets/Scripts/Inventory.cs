@@ -8,7 +8,7 @@ public class Inventory : MonoBehaviour {
     public List<GameObject> FurnitureInventory;
     public List<GameObject> FurnitureIcons;
     public GameObject InventoryPanel;
-
+    public GameObject SelectedFurniture;
     // Use this for initialization
     void Start ()
     {
@@ -39,8 +39,12 @@ public class Inventory : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
-		
+    void Update ()
+    {
+        if (SelectedFurniture != null)
+        {
+            SelectedFurniture.transform.position = Input.mousePosition;
+        }	
 	}
 
 }
