@@ -290,6 +290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 150955071}
   - component: {fileID: 150955070}
+  - component: {fileID: 150955072}
   m_Layer: 0
   m_Name: CombatManger
   m_TagString: Untagged
@@ -329,6 +330,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &150955072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 150955069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 757ba0648f16fdf40929f90529162748, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1246261016451394, guid: 65ec343bbca944148bcd327a1f4401d9, type: 2}
 --- !u!1 &342639780
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +583,10 @@ MonoBehaviour:
   pauseMenu: {fileID: 664538563}
   player: {fileID: 595445003}
   enemy: {fileID: 1781589474}
+  optionsPanel: {fileID: 0}
+  musicSource: {fileID: 0}
+  soundSlider: {fileID: 0}
+  musicSlider: {fileID: 0}
 --- !u!1 &595445003
 GameObject:
   m_ObjectHideFlags: 0

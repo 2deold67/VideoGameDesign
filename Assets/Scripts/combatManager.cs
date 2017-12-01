@@ -16,11 +16,14 @@ public class combatManager : MonoBehaviour {
     int playerAttackChoice;
 
     // Use this for initialization
-    void Start() {
+    void Start()
+    {
         enemyhealth.maxValue = enemy.GetComponent<EnemyManager>().enemyHealth;
         enemyhealth.normalizedValue = 1;
         playerhealth.maxValue = player.GetComponent<PlayerController>().playerHealth;
         playerhealth.normalizedValue = 1;
+
+        PopupDamageTextController.Initialize();
     }
 	
 	// Update is called once per frame
@@ -86,6 +89,9 @@ public class combatManager : MonoBehaviour {
                     //win
                     enemy.GetComponent<EnemyManager>().enemyHealth = enemy.GetComponent<EnemyManager>().enemyHealth - player.GetComponent<PlayerController>().playerDmg;
                     enemyhealth.value = enemyhealth.value - player.GetComponent<PlayerController>().playerDmg;
+
+                    PopupDamageTextController.CreatePopupDamage(player.GetComponent<PlayerController>().playerDmg.ToString(),enemy.transform);
+
                     Debug.Log("You bash them into oblivion");
                 }
             }

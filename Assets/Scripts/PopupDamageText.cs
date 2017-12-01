@@ -23,8 +23,10 @@ public class PopupDamageText : MonoBehaviour
 
     public void SetText(string text)
     {
+        Debug.Log(animator.GetComponent<Text>().text);
+        animator.GetComponent<Text>().text = text;
+        //damageText.text = text;
 
-        damageText.text = text;
 
     }
 
