@@ -33,8 +33,8 @@ public class UIManager : MonoBehaviour {
         else
         {
             musicSource.GetComponent<AudioSource>().Play();
-            musicSource.GetComponent<AudioSource>().volume = 0.5f;
-            AudioListener.volume = 0.5f;
+            musicSource.GetComponent<AudioSource>().volume = 1.0f;
+            AudioListener.volume = 1.0f;
             musicSlider.value = musicSource.GetComponent<AudioSource>().volume;
             soundSlider.value = AudioListener.volume;
             optionsPanel.SetActive(false);
@@ -142,5 +142,18 @@ public class UIManager : MonoBehaviour {
     public void OptionsPanel()
     {
         optionsPanel.SetActive(!optionsPanel.activeSelf);
+    }
+    public void GoHome()
+    {
+        SceneManager.LoadScene("Test");
+    }
+    public void Exit()
+    {
+        Application.Quit();
+    }
+    public void PauseMenu()
+    {
+        pauseMenu.SetActive(!pauseMenu.activeSelf);
+
     }
 }
