@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public companionManager defaultCompanion;
     public int lastAttack;
     public GameObject Enemy;
+    public int minimapLayerMask = ~(1 << 8);//ignore minimap layer
 
     // Use this for initialization
     void Start()
@@ -43,7 +44,7 @@ public class PlayerController : MonoBehaviour
                     RaycastHit hit;
                     Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
 
-                    if (Physics.Raycast(ray, out hit))
+                    if (Physics.Raycast(ray, out hit, minimapLayerMask))
                         if (hit.collider != null)
                         {
                             GoToLocation(new Vector3(hit.point.x, transform.position.y, hit.point.z));
@@ -82,8 +83,9 @@ public class PlayerController : MonoBehaviour
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.tag != "Player")
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity,minimapLayerMask) && hit.collider.gameObject.tag != "Player")
             {
+                Debug.Log(hit.collider.gameObject.name);
                 Vector3 destination = new Vector3(hit.point.x, hit.point.y + 1, hit.point.z);
 
                 transform.position = Vector3.Lerp(transform.position, destination, playerSpeed * Time.deltaTime);
@@ -91,6 +93,5 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
   
 }
