@@ -26,6 +26,9 @@ public class FurnitureIcon : MonoBehaviour {
     {
         print("Test");
         R_Inventory.SelectedFurniture = Instantiate(furniture);
+        R_Inventory.SelectIcon(this.gameObject);
     }
+
+    
 
 }

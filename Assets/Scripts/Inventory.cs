@@ -9,8 +9,15 @@ public class Inventory : MonoBehaviour {
     public List<GameObject> FurnitureIcons;
     public GameObject InventoryPanel;
     public GameObject SelectedFurniture;
+    public int SelectedIcon;
+    public GameObject CancelButton;
     // Use this for initialization
     void Start ()
+    {
+        SortIcons();
+	}
+
+    private void SortIcons()
     {
         float leftColumn = -50,
               rightColumn = 50;
@@ -19,8 +26,7 @@ public class Inventory : MonoBehaviour {
         for (int i = 0; i < FurnitureIcons.Count; i++)
         {
             GameObject temp = Instantiate(FurnitureIcons[i], InventoryPanel.transform);
-            //temp.GetComponent<RectTransform>().anchorMin = new Vector2(0, 1);
-            //temp.GetComponent<RectTransform>().anchorMax = new Vector2(0, 1);
+
             if (!IsOdd(i))
             {
                 temp.transform.localPosition = new Vector3(leftColumn, 100 + (-90 * rowCount));
@@ -31,7 +37,34 @@ public class Inventory : MonoBehaviour {
                 rowCount++;
             }
         }
-	}
+    }
+
+    internal void SelectIcon(GameObject icon)
+    {
+        for (int i = 0; i < FurnitureIcons.Count; i++)
+        {
+            if (FurnitureIcons[i] == icon)
+            {
+                SelectedIcon = i;
+                return;
+            }
+        }
+    }
+
+    public void RemoveSelectedIcon()
+    {
+        print("I shall remove");
+        Destroy(FurnitureIcons[SelectedIcon]);
+        FurnitureIcons.RemoveAt(SelectedIcon);
+        SortIcons();
+        SelectedIcon = -1;
+    }
+
+    public void Cancel()
+    {
+        DestroyObject(SelectedFurniture);
+        SelectedIcon = -1;
+    }
 
     private bool IsOdd(int value)
     {
@@ -41,9 +74,9 @@ public class Inventory : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        if (SelectedFurniture != null)
+        if (CancelButton.activeSelf != (SelectedIcon != -1))
         {
-            SelectedFurniture.transform.position = Input.mousePosition;
+            CancelButton.SetActive(SelectedIcon != -1);
         }	
 	}
 
