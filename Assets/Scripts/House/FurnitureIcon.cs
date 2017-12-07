@@ -6,6 +6,7 @@ public class FurnitureIcon : MonoBehaviour {
 
     public GameObject furniture;
     public Inventory R_Inventory;
+    public int RefNum;
 	// Use this for initialization
 	void Start ()
     {
@@ -24,9 +25,8 @@ public class FurnitureIcon : MonoBehaviour {
 
     public void OnPress()
     {
-        print("Test");
         R_Inventory.SelectedFurniture = Instantiate(furniture);
-        R_Inventory.SelectIcon(this.gameObject);
+        R_Inventory.SelectIcon(RefNum);
     }
 
     
