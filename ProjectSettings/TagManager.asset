@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Inventory
   - UIManager
+  - tbd
+  - Icon
   layers:
   - Default
   - TransparentFX

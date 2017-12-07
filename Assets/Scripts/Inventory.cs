@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour {
 
-    public List<GameObject> FurnitureInventory;
     public List<GameObject> FurnitureIcons;
     public GameObject InventoryPanel;
     public GameObject SelectedFurniture;
@@ -23,10 +22,19 @@ public class Inventory : MonoBehaviour {
               rightColumn = 50;
         int rowCount = 0;
 
+        GameObject[] oldIcons = GameObject.FindGameObjectsWithTag("Icon");
+        if (oldIcons.Length > 0)
+        {
+            for (int i = 0; i < oldIcons.Length; i++)
+            {
+                Destroy(oldIcons[i]);
+            }
+        }
+
         for (int i = 0; i < FurnitureIcons.Count; i++)
         {
             GameObject temp = Instantiate(FurnitureIcons[i], InventoryPanel.transform);
-
+            temp.GetComponent<FurnitureIcon>().RefNum = i;
             if (!IsOdd(i))
             {
                 temp.transform.localPosition = new Vector3(leftColumn, 100 + (-90 * rowCount));
@@ -39,22 +47,13 @@ public class Inventory : MonoBehaviour {
         }
     }
 
-    internal void SelectIcon(GameObject icon)
+    internal void SelectIcon(int icon)
     {
-        for (int i = 0; i < FurnitureIcons.Count; i++)
-        {
-            if (FurnitureIcons[i] == icon)
-            {
-                SelectedIcon = i;
-                return;
-            }
-        }
+        SelectedIcon = icon;
     }
 
     public void RemoveSelectedIcon()
     {
-        print("I shall remove");
-        Destroy(FurnitureIcons[SelectedIcon]);
         FurnitureIcons.RemoveAt(SelectedIcon);
         SortIcons();
         SelectedIcon = -1;

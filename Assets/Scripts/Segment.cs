@@ -56,6 +56,9 @@ public class Segment : MonoBehaviour {
                 Furniture = R_Inventory.SelectedFurniture;
                 Furniture.transform.parent = this.transform;
                 Furniture.transform.localPosition = Vector3.zero;
+                //temporary
+                Furniture.transform.Translate(0, 0.5f, 0);
+                //end of temporary
                 R_Inventory.RemoveSelectedIcon();
                 Taken = true;
                 R_Inventory.SelectedFurniture = null;
