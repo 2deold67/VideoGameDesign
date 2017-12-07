@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Inventory
   - UIManager
+  - EnemySpawn
+  - FightPopup
   layers:
   - Default
   - TransparentFX

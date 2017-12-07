@@ -19,6 +19,11 @@ public class PlayerController : MonoBehaviour
     public GameObject Enemy;
     public int minimapLayerMask = ~(1 << 8);//ignore minimap layer
 
+    void Awake()
+    {
+        DontDestroyOnLoad(transform.gameObject);
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -85,7 +90,6 @@ public class PlayerController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity,minimapLayerMask) && hit.collider.gameObject.tag != "Player")
             {
-                Debug.Log(hit.collider.gameObject.name);
                 Vector3 destination = new Vector3(hit.point.x, hit.point.y + 1, hit.point.z);
 
                 transform.position = Vector3.Lerp(transform.position, destination, playerSpeed * Time.deltaTime);
