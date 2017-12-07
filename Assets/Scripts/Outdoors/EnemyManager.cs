@@ -13,12 +13,13 @@ public class EnemyManager : MonoBehaviour {
     // Use this for initialization
     void Awake()
     {
-        DontDestroyOnLoad(transform.gameObject);
+
     }
     void Start () {
         //enemyHealth = 50;
         //enemyDamage = 2;
-        fightPopup = GameObject.FindGameObjectWithTag("FightPopup");
+        fightPopup = GameObject.Find("Fight Popup");
+        Debug.Log(fightPopup.tag);
         fightPopup.SetActive(false);
     }
 	
@@ -38,10 +39,9 @@ public class EnemyManager : MonoBehaviour {
 
     private void OnCollisionStay(Collision collision)
     {
-        if (fightPopup.gameObject.activeSelf ==false)
+        if (fightPopup.gameObject.activeSelf == false)
         {
             fightPopup.gameObject.SetActive(true);
-
         }
 
     }

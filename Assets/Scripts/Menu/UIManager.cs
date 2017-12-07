@@ -144,8 +144,8 @@ public class UIManager : MonoBehaviour {
         optionsPanel.SetActive(!optionsPanel.activeSelf);
     }
     public void GoHome()
-    {
-        SceneManager.LoadScene("Test");
+    { 
+        SceneManager.LoadScene("FurnitureRoom");
     }
     public void Exit()
     {

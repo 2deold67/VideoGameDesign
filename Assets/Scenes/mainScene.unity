@@ -1492,6 +1492,7 @@ MonoBehaviour:
   lastAttack: 0
   Enemy: {fileID: 0}
   minimapLayerMask: -257
+  fightPopup: {fileID: 907485715}
 --- !u!222 &783076289
 CanvasRenderer:
   m_ObjectHideFlags: 0

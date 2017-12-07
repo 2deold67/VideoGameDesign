@@ -18,12 +18,11 @@ public class PlayerController : MonoBehaviour
     public int lastAttack;
     public GameObject Enemy;
     public int minimapLayerMask = ~(1 << 8);//ignore minimap layer
+    public GameObject fightPopup;
 
     void Awake()
     {
-        DontDestroyOnLoad(transform.gameObject);
     }
-
     // Use this for initialization
     void Start()
     {
@@ -38,8 +37,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //checks ifgame is not paused and the [player is not in a fight
-        if (!UIManager.GetComponent<UIManager>().isPaused && SceneManager.GetActiveScene().name != "fightScene")
+        if ((!UIManager.GetComponent<UIManager>().isPaused && SceneManager.GetActiveScene().name != "fightScene") && fightPopup.gameObject.activeSelf == false )
         {
+            Debug.Log(fightPopup.gameObject.activeSelf);
             //checks if there is a finger on screen
             if (Input.touchCount > 0)
             {

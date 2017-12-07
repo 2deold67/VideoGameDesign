@@ -15,5 +15,5 @@ EditorBuildSettings:
     path: Assets/Scenes/fightScene.unity
     guid: 30de6fe05aba4464887918f642eebfa5
   - enabled: 1
-    path: Assets/Scenes/Test.unity
-    guid: 93ac45a493c4194408e939e5aa8441ee
+    path: Assets/Scenes/FurnitureRoom.unity
+    guid: f84c3ec2053b4c14987e60b42148b2c7
