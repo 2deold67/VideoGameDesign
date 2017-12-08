@@ -7,18 +7,20 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+//accessible from all scenes (only 1 player)
+    public static int playerHealth;
+    public static int playerDmg;
+    public static int dmgMulti; //damage multiplier
+    public static int lastAttack;
+    public static float playerSpeed;
+    public static companionManager[] companionList;
+    public static companionManager defaultCompanion;
+    public static GameObject player;
+    public static GameObject fightPopup;
 
-    public float playerSpeed;
-    public GameObject UIManager;
-    public int playerHealth;
-    public int playerDmg;
-    public int dmgMulti; //damage multiplier
-    public companionManager[] companionList;
-    public companionManager defaultCompanion;
-    public int lastAttack;
-    public GameObject Enemy;
     public int minimapLayerMask = ~(1 << 8);//ignore minimap layer
-    public GameObject fightPopup;
+    public GameObject Enemy;
+    public GameObject UIManager;
 
     void Awake()
     {
@@ -26,20 +28,23 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        playerHealth = 50;
+        playerDmg = 5;
+        dmgMulti = 1;
+        lastAttack = 1;
+        playerSpeed = 3.0f;
         companionList = new companionManager[4];
         companionList[0] = defaultCompanion;
-        playerSpeed = 3.0f;
-        //playerHealth = 5;
-        //playerDmg = 5;
+        player = this.gameObject;
+        fightPopup = GameObject.Find("Fight Popup");
     }
 
     // Update is called once per frame
     void Update()
     {
-        //checks ifgame is not paused and the [player is not in a fight
+        //checks if game is not paused and the player is not in a fight and if there is any popup on screen
         if ((!UIManager.GetComponent<UIManager>().isPaused && SceneManager.GetActiveScene().name != "fightScene") && fightPopup.gameObject.activeSelf == false )
         {
-            Debug.Log(fightPopup.gameObject.activeSelf);
             //checks if there is a finger on screen
             if (Input.touchCount > 0)
             {
@@ -75,7 +80,6 @@ public class PlayerController : MonoBehaviour
 
     public void GoToLocation(Vector3 location)
     {
-
         transform.position = Vector3.Lerp(transform.position, location, playerSpeed * Time.deltaTime);
         //Debug.Log("Destination : " + location);
 

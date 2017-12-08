@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class combatManager : MonoBehaviour {
     public GameObject pauseMenu;     
@@ -18,21 +19,23 @@ public class combatManager : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        player = PlayerController.player;
         enemyhealth.maxValue = enemy.GetComponent<EnemyManager>().enemyHealth;
         enemyhealth.normalizedValue = 1;
-        playerhealth.maxValue = player.GetComponent<PlayerController>().playerHealth;
+        playerhealth.maxValue = PlayerController.playerHealth;
         playerhealth.normalizedValue = 1;
 
         PopupDamageTextController.Initialize();
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
        
         if (!UIManager.GetComponent<UIManager>().isPaused)          // check if the games not paused then do comnbat calcs
         {
             //player health what do
-            if (player.GetComponent<PlayerController>().playerHealth <= 0)
+            if (PlayerController.playerHealth <= 0)
             {
                 Debug.Log("Player dead");
             }
@@ -42,15 +45,14 @@ public class combatManager : MonoBehaviour {
             if (enemy.GetComponent<EnemyManager>().enemyHealth <= 0)
             {
                 Debug.Log("enemy dead");
+
+                SceneManager.LoadScene("mainScene");
+                
             }
 
-            //eneemy attack 
-            enemyAttckChoice = enemy.GetComponent<EnemyManager>().enemyAttack;
-
-            
+            //enemy attack 
+            enemyAttckChoice = enemy.GetComponent<EnemyManager>().enemyAttack;  
         }
-       
-        
     }
 
     public void Combat()
@@ -60,14 +62,15 @@ public class combatManager : MonoBehaviour {
         { 
             enemy.GetComponent<EnemyManager>().EnemyAttack(); // calls the random functiopn to set the enemeys attack 
             enemyAttckChoice = enemy.GetComponent<EnemyManager>().enemyAttack;
-            Debug.Log(enemyAttckChoice);
-            playerAttackChoice = player.GetComponent<PlayerController>().lastAttack; //  grabs the players last attack value 
-            Debug.Log(playerAttackChoice);
+            Debug.Log("enemy attack:"+ enemyAttckChoice);
+            playerAttackChoice = PlayerController.lastAttack; //  grabs the players last attack value 
+            Debug.Log("player attack:" + playerAttackChoice);
 
-        // Actual combat calculations
+            // Actual combat calculations
 
-        
-        
+            Debug.Log("player Health =" + PlayerController.playerHealth);
+            Debug.Log("Enemy health = " + enemy.GetComponent<EnemyManager>().enemyHealth);
+
             if (playerAttackChoice == enemyAttckChoice)
             {
                 //DO NOTHING 
@@ -80,28 +83,28 @@ public class combatManager : MonoBehaviour {
                 {
                     //lose
                     Debug.Log("The enemy counterattcks");
-                    player.GetComponent<PlayerController>().playerHealth = player.GetComponent<PlayerController>().playerHealth - enemy.GetComponent<EnemyManager>().enemyDamage;
-                    playerhealth.value = playerhealth.value - enemy.GetComponent<EnemyManager>().enemyDamage;
+                    PlayerController.playerHealth -= enemy.GetComponent<EnemyManager>().enemyDamage;
+                    playerhealth.value -= enemy.GetComponent<EnemyManager>().enemyDamage;
                 }
 
                 else if (enemyAttckChoice == 3)//sword
                 {
                     //win
-                    enemy.GetComponent<EnemyManager>().enemyHealth = enemy.GetComponent<EnemyManager>().enemyHealth - player.GetComponent<PlayerController>().playerDmg;
-                    enemyhealth.value = enemyhealth.value - player.GetComponent<PlayerController>().playerDmg;
+                    enemy.GetComponent<EnemyManager>().enemyHealth  -= PlayerController.playerDmg;
+                    enemyhealth.value -=  PlayerController.playerDmg;
 
-                    PopupDamageTextController.CreatePopupDamage(player.GetComponent<PlayerController>().playerDmg.ToString(),enemy.transform);
+                    PopupDamageTextController.CreatePopupDamage(PlayerController.playerDmg.ToString(),enemy.transform);
 
                     Debug.Log("You bash them into oblivion");
                 }
             }
-            if (playerAttackChoice == 2) //  dagger 
+            else if (playerAttackChoice == 2) //  dagger 
             {
                 if (enemyAttckChoice == 1)//sheild bash 
                 {
                     //win
-                    enemy.GetComponent<EnemyManager>().enemyHealth = enemy.GetComponent<EnemyManager>().enemyHealth - player.GetComponent<PlayerController>().playerDmg;
-                    enemyhealth.value = enemyhealth.value - player.GetComponent<PlayerController>().playerDmg;
+                    enemy.GetComponent<EnemyManager>().enemyHealth -= PlayerController.playerDmg;
+                    enemyhealth.value -=  PlayerController.playerDmg;
                     Debug.Log("You counterattck the enemy");
                 }
 
@@ -109,27 +112,27 @@ public class combatManager : MonoBehaviour {
                 {
                     //lose
 
-                    player.GetComponent<PlayerController>().playerHealth = player.GetComponent<PlayerController>().playerHealth - enemy.GetComponent<EnemyManager>().enemyDamage;
-                    playerhealth.value = playerhealth.value - enemy.GetComponent<EnemyManager>().enemyDamage;
+                    PlayerController.playerHealth -=  enemy.GetComponent<EnemyManager>().enemyDamage;
+                    playerhealth.value -= enemy.GetComponent<EnemyManager>().enemyDamage;
                     Debug.Log("The enemy gets a few good hits in");
                 }
             }
-            if (playerAttackChoice == 3) // sword
+            else if (playerAttackChoice == 3) // sword
             {
                 if (enemyAttckChoice == 1)//shield bash 
                 {
                     //lose
 
-                    player.GetComponent<PlayerController>().playerHealth = player.GetComponent<PlayerController>().playerHealth - enemy.GetComponent<EnemyManager>().enemyDamage;
-                    playerhealth.value = playerhealth.value - enemy.GetComponent<EnemyManager>().enemyDamage;
+                    PlayerController.playerHealth -=  enemy.GetComponent<EnemyManager>().enemyDamage;
+                    playerhealth.value -=  enemy.GetComponent<EnemyManager>().enemyDamage;
                     Debug.Log("the enemy charges you");
                 }
 
                 else if (enemyAttckChoice == 2)//dagger
                 {
                     //win
-                    enemy.GetComponent<EnemyManager>().enemyHealth = enemy.GetComponent<EnemyManager>().enemyHealth - player.GetComponent<PlayerController>().playerDmg;
-                    enemyhealth.value = enemyhealth.value - player.GetComponent<PlayerController>().playerDmg;
+                    enemy.GetComponent<EnemyManager>().enemyHealth -= PlayerController.playerDmg;
+                    enemyhealth.value -= PlayerController.playerDmg;
                     Debug.Log("you fuck em up");
                 }
             }

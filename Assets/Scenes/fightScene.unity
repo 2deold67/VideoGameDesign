@@ -338,10 +338,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 150955069}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 757ba0648f16fdf40929f90529162748, type: 3}
+  m_Script: {fileID: 11500000, guid: 41d64143fca7395429f6a87cd9743e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1246261016451394, guid: 65ec343bbca944148bcd327a1f4401d9, type: 2}
+  pauseMenu: {fileID: 0}
+  player: {fileID: 0}
+  enemy: {fileID: 0}
+  UIManager: {fileID: 0}
+  companionList: []
+  defaultCompanion: {fileID: 0}
+  enemyhealth: {fileID: 1527295060}
+  playerhealth: {fileID: 1303346752}
 --- !u!1 &342639780
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,8 +592,14 @@ MonoBehaviour:
   enemy: {fileID: 1781589474}
   optionsPanel: {fileID: 0}
   musicSource: {fileID: 0}
+  soundIcon: {fileID: 0}
+  musicIcon: {fileID: 0}
   soundSlider: {fileID: 0}
   musicSlider: {fileID: 0}
+  soundSprite: {fileID: 0}
+  musicSprite: {fileID: 0}
+  muteSprite: {fileID: 0}
+  noMusicSprite: {fileID: 0}
 --- !u!1 &595445003
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,7 +613,7 @@ GameObject:
   - component: {fileID: 595445005}
   - component: {fileID: 595445004}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -617,15 +630,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71af89463d062754abfce1f0382835b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 0
+  minimapLayerMask: -257
+  fightPopup: {fileID: 0}
+  Enemy: {fileID: 0}
   UIManager: {fileID: 557894305}
-  playerHealth: 50
-  playerDmg: 5
-  dmgMulti: 0
-  companionList: []
-  defaultCompanion: {fileID: 0}
-  lastAttack: 0
-  Enemy: {fileID: 1781589474}
 --- !u!23 &595445005
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -947,7 +955,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -38, y: -314}
+  m_AnchoredPosition: {x: -38, y: -204}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &762769544
@@ -1403,7 +1411,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -290, y: -314}
+  m_AnchoredPosition: {x: -290, y: -204}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1288127318
@@ -1536,7 +1544,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -164, y: -206}
+  m_AnchoredPosition: {x: -164, y: -96}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1290819506
@@ -2293,6 +2301,7 @@ MonoBehaviour:
   enemyDamage: 2
   enemyAttack: 0
   dmgMulti: 0
+  fightPopup: {fileID: 0}
 --- !u!1 &2138054612
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,8 +18,7 @@ public class EnemyManager : MonoBehaviour {
     void Start () {
         //enemyHealth = 50;
         //enemyDamage = 2;
-        fightPopup = GameObject.Find("Fight Popup");
-        Debug.Log(fightPopup.tag);
+        fightPopup = PlayerController.fightPopup;
         fightPopup.SetActive(false);
     }
 	
@@ -52,11 +51,39 @@ public class EnemyManager : MonoBehaviour {
     //}
     void Update()
     {
-        if (fightPopup.gameObject.activeSelf == true && Input.GetKeyDown(KeyCode.Space))
+        if (GameObject.Find("Fight Popup"))
         {
-            Debug.Log("Loading Fight");
-            SceneManager.LoadScene("fightScene");
-        }
+            if (fightPopup.gameObject.activeSelf == true && Input.GetKeyDown(KeyCode.Return))
+            {
+                EnterFight();
+            }
+            else if (fightPopup.gameObject.activeSelf == true && Input.GetKeyDown(KeyCode.N))
+            {
+                Debug.Log("You bailed");
+                GetComponent<SphereCollider>().isTrigger = true;
+                fightPopup.gameObject.SetActive(false);
+                StartCoroutine(WaitForPopup());
+
+
+
+            }
+        } 
     }
 
+    public void EnterFight()
+    {
+        SceneManager.LoadScene("fightScene");
+    }
+
+
+
+    IEnumerator WaitForPopup()
+    {
+        print(Time.time);
+
+        yield return new WaitForSeconds(1);
+        print(Time.time);
+        GetComponent<SphereCollider>().isTrigger = false;
+    }
 }
+
