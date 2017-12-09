@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f6a248fce9e5e489a405f6a5c0d5fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  furniture: {fileID: 1340323776476804, guid: f733b41741d30314bb8bf9b74bcc0c15, type: 2}
+  furniture: {fileID: 1055135694138342, guid: ed3dd1ec6dff4d248b723bb5434b97e3, type: 2}
   R_Inventory: {fileID: 0}
   RefNum: 0
 --- !u!222 &222846971576681278
