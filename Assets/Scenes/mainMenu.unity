@@ -1215,6 +1215,7 @@ MonoBehaviour:
   musicSource: {fileID: 725989573}
   soundIcon: {fileID: 1917341901}
   musicIcon: {fileID: 1440303550}
+  introText: {fileID: 0}
   soundSlider: {fileID: 2044790031}
   musicSlider: {fileID: 1065025701}
   soundSprite: {fileID: 21300238, guid: 9aa8c0370e5f44541bd2bf66e4e484db, type: 3}
@@ -1343,32 +1344,32 @@ Prefab:
     - target: {fileID: 224870497149785688, guid: 0e0047fac6da7c246b9cae6ef4bd01e5,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 1083.4
       objectReference: {fileID: 0}
     - target: {fileID: 224870497149785688, guid: 0e0047fac6da7c246b9cae6ef4bd01e5,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 663.6
       objectReference: {fileID: 0}
     - target: {fileID: 224870497149785688, guid: 0e0047fac6da7c246b9cae6ef4bd01e5,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 224870497149785688, guid: 0e0047fac6da7c246b9cae6ef4bd01e5,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 224870497149785688, guid: 0e0047fac6da7c246b9cae6ef4bd01e5,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 224870497149785688, guid: 0e0047fac6da7c246b9cae6ef4bd01e5,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 224870497149785688, guid: 0e0047fac6da7c246b9cae6ef4bd01e5,
         type: 2}
@@ -1380,6 +1381,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114391004623270904, guid: 0e0047fac6da7c246b9cae6ef4bd01e5,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1909285707}
+    - target: {fileID: 114681051789282418, guid: 0e0047fac6da7c246b9cae6ef4bd01e5,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1909285707}
     - target: {fileID: 114039018140805642, guid: 0e0047fac6da7c246b9cae6ef4bd01e5,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1390,21 +1401,35 @@ Prefab:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1909285707}
-    - target: {fileID: 114681051789282418, guid: 0e0047fac6da7c246b9cae6ef4bd01e5,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1909285707}
-    - target: {fileID: 114391004623270904, guid: 0e0047fac6da7c246b9cae6ef4bd01e5,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1909285707}
     - target: {fileID: 114331443527996444, guid: 0e0047fac6da7c246b9cae6ef4bd01e5,
         type: 2}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1909285707}
+    - target: {fileID: 224798423621491962, guid: 0e0047fac6da7c246b9cae6ef4bd01e5,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224135462679523808, guid: 0e0047fac6da7c246b9cae6ef4bd01e5,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224222802172703852, guid: 0e0047fac6da7c246b9cae6ef4bd01e5,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224719676924953778, guid: 0e0047fac6da7c246b9cae6ef4bd01e5,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928951328744312, guid: 0e0047fac6da7c246b9cae6ef4bd01e5, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e0047fac6da7c246b9cae6ef4bd01e5, type: 2}
   m_IsPrefabParent: 0

@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour {
     public GameObject musicSource;
     public GameObject soundIcon;
     public GameObject musicIcon;
+    public GameObject introText;
     public Slider soundSlider;
     public Slider musicSlider;
     public Sprite soundSprite;
@@ -21,6 +22,7 @@ public class UIManager : MonoBehaviour {
     public Sprite muteSprite;
     public Sprite noMusicSprite;
     bool isMute;
+
 
     // Use this for initialization
     void Start ()
@@ -46,6 +48,12 @@ public class UIManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if (!PlayerController.seenIntro)
+        {
+            introText.SetActive(false);
+            PlayerController.seenIntro = true;
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Pause();
@@ -155,5 +163,11 @@ public class UIManager : MonoBehaviour {
     {
         pauseMenu.SetActive(!pauseMenu.activeSelf);
 
+    }
+    public void DisableIntroText()
+    {
+
+            introText.SetActive(false);
+            PlayerController.seenIntro = true;
     }
 }

@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public static int dmgMulti; //damage multiplier
     public static int lastAttack;
     public static float playerSpeed;
+    public static bool seenIntro;
     public static companionManager[] companionList;
     public static companionManager defaultCompanion;
     public static GameObject player;
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        seenIntro = false;
     }
     // Use this for initialization
     void Start()
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour
         companionList[0] = defaultCompanion;
         player = this.gameObject;
         fightPopup = GameObject.Find("Fight Popup");
+
     }
 
     // Update is called once per frame
