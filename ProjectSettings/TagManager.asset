@@ -8,6 +8,8 @@ TagManager:
   - UIManager
   - EnemySpawn
   - FightPopup
+  - Icon
+  - Companion
   layers:
   - Default
   - TransparentFX

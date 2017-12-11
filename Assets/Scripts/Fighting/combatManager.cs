@@ -59,82 +59,91 @@ public class combatManager : MonoBehaviour {
     {
         ///Works out the attck values for the players
         if (!UIManager.GetComponent<UIManager>().isPaused)
-        { 
-            enemy.GetComponent<EnemyManager>().EnemyAttack(); // calls the random functiopn to set the enemeys attack 
-            enemyAttckChoice = enemy.GetComponent<EnemyManager>().enemyAttack;
-            Debug.Log("enemy attack:"+ enemyAttckChoice);
-            playerAttackChoice = PlayerController.lastAttack; //  grabs the players last attack value 
-            Debug.Log("player attack:" + playerAttackChoice);
+        {
 
-            // Actual combat calculations
+                enemy.GetComponent<EnemyManager>().EnemyAttack(); // calls the random functiopn to set the enemeys attack 
+                enemyAttckChoice = enemy.GetComponent<EnemyManager>().enemyAttack;
+                Debug.Log("enemy attack:" + enemyAttckChoice);
+                playerAttackChoice = PlayerController.lastAttack; //  grabs the players last attack value 
+                Debug.Log("player attack:" + playerAttackChoice);
 
-            Debug.Log("player Health =" + PlayerController.playerHealth);
-            Debug.Log("Enemy health = " + enemy.GetComponent<EnemyManager>().enemyHealth);
+                // Actual combat calculations
 
-            if (playerAttackChoice == enemyAttckChoice)
+                Debug.Log("player Health =" + PlayerController.playerHealth);
+                Debug.Log("Enemy health = " + enemy.GetComponent<EnemyManager>().enemyHealth);
+
+            if (PlayerController.defaultCompanion.GetComponent<companionManager>().TryHit() == false)
             {
-                //DO NOTHING 
-                Debug.Log("Embarassingly you both have the same idea");
-                // NO DAMAGE 
+                if (playerAttackChoice == enemyAttckChoice)
+                {
+                    //DO NOTHING 
+                    Debug.Log("Embarassingly you both have the same idea");
+                    // NO DAMAGE 
+                }
+                if (playerAttackChoice == 1) // sheild bash 
+                {
+                    if (enemyAttckChoice == 2) // dagger
+                    {
+                        //lose
+                        Debug.Log("The enemy counterattcks");
+                        PlayerController.playerHealth -= enemy.GetComponent<EnemyManager>().enemyDamage;
+                        playerhealth.value -= enemy.GetComponent<EnemyManager>().enemyDamage;
+                    }
+
+                    else if (enemyAttckChoice == 3)//sword
+                    {
+                        //win
+                        enemy.GetComponent<EnemyManager>().enemyHealth -= PlayerController.playerDmg;
+                        enemyhealth.value -= PlayerController.playerDmg;
+
+                        PopupDamageTextController.CreatePopupDamage(PlayerController.playerDmg.ToString(), enemy.transform);
+
+                        Debug.Log("You bash them into oblivion");
+                    }
+                }
+                else if (playerAttackChoice == 2) //  dagger 
+                {
+                    if (enemyAttckChoice == 1)//sheild bash 
+                    {
+                        //win
+                        enemy.GetComponent<EnemyManager>().enemyHealth -= PlayerController.playerDmg;
+                        enemyhealth.value -= PlayerController.playerDmg;
+                        Debug.Log("You counterattck the enemy");
+                    }
+
+                    else if (enemyAttckChoice == 3) // sword
+                    {
+                        //lose
+
+                        PlayerController.playerHealth -= enemy.GetComponent<EnemyManager>().enemyDamage;
+                        playerhealth.value -= enemy.GetComponent<EnemyManager>().enemyDamage;
+                        Debug.Log("The enemy gets a few good hits in");
+                    }
+                }
+                else if (playerAttackChoice == 3) // sword
+                {
+                    if (enemyAttckChoice == 1)//shield bash 
+                    {
+                        //lose
+
+                        PlayerController.playerHealth -= enemy.GetComponent<EnemyManager>().enemyDamage;
+                        playerhealth.value -= enemy.GetComponent<EnemyManager>().enemyDamage;
+                        Debug.Log("the enemy charges you");
+                    }
+
+                    else if (enemyAttckChoice == 2)//dagger
+                    {
+                        //win
+                        enemy.GetComponent<EnemyManager>().enemyHealth -= PlayerController.playerDmg;
+                        enemyhealth.value -= PlayerController.playerDmg;
+                        Debug.Log("you fuck em up");
+                    }
+                }
+
             }
-            if (playerAttackChoice == 1) // sheild bash 
+            else
             {
-                if (enemyAttckChoice == 2) // dagger
-                {
-                    //lose
-                    Debug.Log("The enemy counterattcks");
-                    PlayerController.playerHealth -= enemy.GetComponent<EnemyManager>().enemyDamage;
-                    playerhealth.value -= enemy.GetComponent<EnemyManager>().enemyDamage;
-                }
-
-                else if (enemyAttckChoice == 3)//sword
-                {
-                    //win
-                    enemy.GetComponent<EnemyManager>().enemyHealth  -= PlayerController.playerDmg;
-                    enemyhealth.value -=  PlayerController.playerDmg;
-
-                    PopupDamageTextController.CreatePopupDamage(PlayerController.playerDmg.ToString(),enemy.transform);
-
-                    Debug.Log("You bash them into oblivion");
-                }
-            }
-            else if (playerAttackChoice == 2) //  dagger 
-            {
-                if (enemyAttckChoice == 1)//sheild bash 
-                {
-                    //win
-                    enemy.GetComponent<EnemyManager>().enemyHealth -= PlayerController.playerDmg;
-                    enemyhealth.value -=  PlayerController.playerDmg;
-                    Debug.Log("You counterattck the enemy");
-                }
-
-                else if (enemyAttckChoice == 3) // sword
-                {
-                    //lose
-
-                    PlayerController.playerHealth -=  enemy.GetComponent<EnemyManager>().enemyDamage;
-                    playerhealth.value -= enemy.GetComponent<EnemyManager>().enemyDamage;
-                    Debug.Log("The enemy gets a few good hits in");
-                }
-            }
-            else if (playerAttackChoice == 3) // sword
-            {
-                if (enemyAttckChoice == 1)//shield bash 
-                {
-                    //lose
-
-                    PlayerController.playerHealth -=  enemy.GetComponent<EnemyManager>().enemyDamage;
-                    playerhealth.value -=  enemy.GetComponent<EnemyManager>().enemyDamage;
-                    Debug.Log("the enemy charges you");
-                }
-
-                else if (enemyAttckChoice == 2)//dagger
-                {
-                    //win
-                    enemy.GetComponent<EnemyManager>().enemyHealth -= PlayerController.playerDmg;
-                    enemyhealth.value -= PlayerController.playerDmg;
-                    Debug.Log("you fuck em up");
-                }
+                Debug.Log("Companion hit!");
             }
 
         }

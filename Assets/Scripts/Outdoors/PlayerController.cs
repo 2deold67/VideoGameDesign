@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         companionList[0] = defaultCompanion;
         player = this.gameObject;
         fightPopup = GameObject.Find("Fight Popup");
-
+        defaultCompanion = GameObject.FindGameObjectWithTag("Companion").GetComponent<companionManager>();
     }
 
     // Update is called once per frame
