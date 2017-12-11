@@ -6,10 +6,18 @@ using UnityEngine;
 public class Inventory : MonoBehaviour {
 
     public List<GameObject> FurnitureIcons;
+
     public GameObject InventoryPanel;
     public GameObject SelectedFurniture;
-    public int SelectedIcon;
     public GameObject CancelButton;
+    public GameObject Player;
+
+    public Transform PlayerSpawner;
+
+    public int SelectedIcon;
+
+    public bool IsInCustomize;
+
     // Use this for initialization
     void Start ()
     {
@@ -65,6 +73,25 @@ public class Inventory : MonoBehaviour {
         SelectedIcon = -1;
     }
 
+    public void Customize()
+    {
+        IsInCustomize = !IsInCustomize;
+        if (IsInCustomize)
+        {
+            Player.transform.position = new Vector3(-10, -10, -10);
+            Player.SetActive(false);
+            InventoryPanel.SetActive(true);
+            
+        }
+        else
+        {
+            Player.transform.position = PlayerSpawner.position;
+            Player.SetActive(true);
+            InventoryPanel.SetActive(false);
+        }
+
+    }
+
     private bool IsOdd(int value)
     {
         return value % 2 != 0;
@@ -76,7 +103,7 @@ public class Inventory : MonoBehaviour {
         if (CancelButton.activeSelf != (SelectedIcon != -1))
         {
             CancelButton.SetActive(SelectedIcon != -1);
-        }	
+        }
 	}
 
 }
