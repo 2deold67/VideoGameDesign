@@ -9,6 +9,7 @@ public class combatManager : MonoBehaviour {
     public GameObject player;
     public GameObject enemy;
     public GameObject UIManager;
+    public GameObject attackText;
     public companionManager[] companionList;
     public companionManager defaultCompanion;
     public Slider enemyhealth;
@@ -24,7 +25,7 @@ public class combatManager : MonoBehaviour {
         enemyhealth.normalizedValue = 1;
         playerhealth.maxValue = PlayerController.playerHealth;
         playerhealth.normalizedValue = 1;
-
+        attackText.SetActive(false);
         PopupDamageTextController.Initialize();
     }
 	
@@ -54,6 +55,10 @@ public class combatManager : MonoBehaviour {
             enemyAttckChoice = enemy.GetComponent<EnemyManager>().enemyAttack;  
         }
     }
+    public void ButtonAttack()
+    {
+        attackText.SetActive(!attackText.activeSelf);
+    }
 
     public void Combat()
     {
@@ -76,8 +81,10 @@ public class combatManager : MonoBehaviour {
             {
                 if (playerAttackChoice == enemyAttckChoice)
                 {
+                    attackText.GetComponentInChildren<Text>().text = "The enemy counterattcks";
                     //DO NOTHING 
-                    Debug.Log("Embarassingly you both have the same idea");
+                    attackText.SetActive(true);
+                    attackText.GetComponentInChildren<Text>().text = ("Embarassingly you both have the same idea");
                     // NO DAMAGE 
                 }
                 if (playerAttackChoice == 1) // sheild bash 
@@ -85,7 +92,8 @@ public class combatManager : MonoBehaviour {
                     if (enemyAttckChoice == 2) // dagger
                     {
                         //lose
-                        Debug.Log("The enemy counterattcks");
+                        attackText.SetActive(true);
+                        attackText.GetComponentInChildren<Text>().text = "The enemy counterattcks";
                         PlayerController.playerHealth -= enemy.GetComponent<EnemyManager>().enemyDamage;
                         playerhealth.value -= enemy.GetComponent<EnemyManager>().enemyDamage;
                     }
@@ -93,12 +101,13 @@ public class combatManager : MonoBehaviour {
                     else if (enemyAttckChoice == 3)//sword
                     {
                         //win
+                        attackText.SetActive(true);
                         enemy.GetComponent<EnemyManager>().enemyHealth -= PlayerController.playerDmg;
                         enemyhealth.value -= PlayerController.playerDmg;
 
                         PopupDamageTextController.CreatePopupDamage(PlayerController.playerDmg.ToString(), enemy.transform);
 
-                        Debug.Log("You bash them into oblivion");
+                        attackText.GetComponentInChildren<Text>().text = "You bash them into oblivion";
                     }
                 }
                 else if (playerAttackChoice == 2) //  dagger 
@@ -106,18 +115,19 @@ public class combatManager : MonoBehaviour {
                     if (enemyAttckChoice == 1)//sheild bash 
                     {
                         //win
+                        attackText.SetActive(true);
                         enemy.GetComponent<EnemyManager>().enemyHealth -= PlayerController.playerDmg;
                         enemyhealth.value -= PlayerController.playerDmg;
-                        Debug.Log("You counterattck the enemy");
+                        attackText.GetComponentInChildren<Text>().text = "You counterattck the enemy";
                     }
 
                     else if (enemyAttckChoice == 3) // sword
                     {
                         //lose
-
+                        attackText.SetActive(true);
                         PlayerController.playerHealth -= enemy.GetComponent<EnemyManager>().enemyDamage;
                         playerhealth.value -= enemy.GetComponent<EnemyManager>().enemyDamage;
-                        Debug.Log("The enemy gets a few good hits in");
+                        attackText.GetComponentInChildren<Text>().text = "The enemy gets a few good hits in";
                     }
                 }
                 else if (playerAttackChoice == 3) // sword
@@ -125,27 +135,31 @@ public class combatManager : MonoBehaviour {
                     if (enemyAttckChoice == 1)//shield bash 
                     {
                         //lose
-
+                        attackText.SetActive(true);
                         PlayerController.playerHealth -= enemy.GetComponent<EnemyManager>().enemyDamage;
                         playerhealth.value -= enemy.GetComponent<EnemyManager>().enemyDamage;
-                        Debug.Log("the enemy charges you");
+                        attackText.GetComponentInChildren<Text>().text = "the enemy charges you";
                     }
 
                     else if (enemyAttckChoice == 2)//dagger
                     {
                         //win
+                        attackText.SetActive(true);
                         enemy.GetComponent<EnemyManager>().enemyHealth -= PlayerController.playerDmg;
                         enemyhealth.value -= PlayerController.playerDmg;
-                        Debug.Log("you fuck em up");
+                        attackText.GetComponentInChildren<Text>().text = "you fuck em up";
                     }
                 }
 
             }
             else
             {
-                Debug.Log("Companion hit!");
+                attackText.SetActive(true);
+                attackText.GetComponentInChildren<Text>().text = "You companion hits the enemy!";
             }
 
         }
     }
+
+
 }

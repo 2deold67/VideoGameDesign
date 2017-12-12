@@ -48,10 +48,13 @@ public class UIManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (!PlayerController.seenIntro)
+        if (GameObject.Find("Intro Text"))
         {
-            introText.SetActive(false);
-            PlayerController.seenIntro = true;
+            if (!PlayerController.seenIntro)
+            {
+                introText.SetActive(false);
+                PlayerController.seenIntro = true;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
