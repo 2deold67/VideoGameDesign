@@ -396,6 +396,16 @@ Prefab:
       propertyPath: musicSlider
       value: 
       objectReference: {fileID: 434966288}
+    - target: {fileID: 82295823741059578, guid: bb05ef31b8d55d4488c7e0019184ad6b,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d973eb2c27114346a156eb528c34b0c, type: 3}
+    - target: {fileID: 82295823741059578, guid: bb05ef31b8d55d4488c7e0019184ad6b,
+        type: 2}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb05ef31b8d55d4488c7e0019184ad6b, type: 2}
   m_IsPrefabParent: 0
